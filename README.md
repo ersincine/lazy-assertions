@@ -1,9 +1,10 @@
 Example usage:
 
 	x = 2
+	y = 2
 	numbers = []
 	path = 'abc.png'
-	this_true((empty(numbers) | equal(x, 2)) & exists(path))
+	this_true((empty(numbers) | equal(x, y)) & exists(path))
 
 Output:
 
@@ -18,13 +19,14 @@ Without lazy-assertions one could do:
 
 	import os
 	x = 2
+	y = 2
 	numbers = []
 	path = 'abc.png'
-	assert((numbers == [] or x == 2) and os.path.exists(path))
+	assert((numbers == [] or x == y) and os.path.exists(path))
 	
 The problem is the output:
 	
-	assert((numbers == [] or x == 2) and os.path.exists(path))
+	assert((numbers == [] or x == y) and os.path.exists(path))
 	AssertionError
 
 It is not possible to understand what went wrong.
