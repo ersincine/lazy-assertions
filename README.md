@@ -14,4 +14,18 @@ Output:
     │   └── equal(2, 2) [TRUE]
     └── exists('abc.png') [FALSE]
 
+Without lazy-assertions one could do:
 
+	import os
+	x = 2
+	numbers = []
+	path = 'abc.png'
+	assert((numbers == [] or x == 2) and os.path.exists(path))
+	
+The problem is the output:
+	
+	assert((numbers == [] or x == 2) and os.path.exists(path))
+	AssertionError
+
+It is not possible to understand what went wrong.
+We do not even know what the values of the variables were.
