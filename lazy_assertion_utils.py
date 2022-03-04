@@ -142,3 +142,21 @@ def evaluate_exists(value):
     truth = os.path.exists(value)
     message = get_function_call_str("exists", value) + get_truth_str(truth)
     return truth, message
+
+
+def evaluate_is_instance(value, type):
+    truth = isinstance(value, type)
+    message = get_function_call_str("is_instance", value, type) + get_truth_str(truth)
+    return truth, message
+
+
+def evaluate_is_convertible(value, type):
+    try:
+        type(value)
+        truth = True
+    except:
+        truth = False
+    message = get_function_call_str("is_convertible", value, type) + get_truth_str(truth)
+    return truth, message
+
+# TODO: get_function_call_str kısımlarını bir ara otomatik yapayım.

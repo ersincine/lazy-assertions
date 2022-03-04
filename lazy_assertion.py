@@ -83,3 +83,9 @@ def exists(value):
     return SimpleLazyAssertion(assertion.evaluate_exists, value)
 
 
+def is_instance(value, type):
+    return SimpleLazyAssertion(assertion.evaluate_is_instance, value, type)
+
+
+def is_convertible(value, type):
+    return SimpleLazyAssertion(assertion.evaluate_is_convertible, value, type)
