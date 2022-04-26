@@ -147,8 +147,11 @@ if __name__ == "__main__":
     # Using Tree it is much easier to create a tree:
     hw02 = Tree("hw02")
     hw02.add("evaluation").add("grader.py", "exercise1_utils.hpp", "exercise2_utils.hpp", "exercise1_tests", "exercise2_tests", "exercise3_tests")
-    hw02.add("exercise1").add("src").add("exercise1.cc")
+    hw02.add("exercise2").add("src").add("exercise1.cc")
     hw02.add("exercise2").add("src").add("exercise2.cc")
-    hw02.add("exercise3").add("src").add("exercise3.cc")
+    data, src = hw02.add("exercise3").add("data", "src")
+    data.add("example.csv")
+    src.add("exercise3.cc")
     dir_structure = hw02.compile()
+    # dir_structure = ('hw02', [('evaluation', ['grader.py', 'exercise1_utils.hpp', 'exercise2_utils.hpp', 'exercise1_tests', 'exercise2_tests', 'exercise3_tests']), ('exercise2', [('src', ['exercise1.cc'])]), ('exercise2', [('src', ['exercise2.cc'])]), ('exercise3', [('data', ['example.csv']), ('src', ['exercise3.cc'])])])
     print_tree(dir_structure)
