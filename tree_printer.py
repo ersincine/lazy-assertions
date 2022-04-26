@@ -94,6 +94,25 @@ def colorize_str(text, text_color=None, underline=False, bold=False):
     return result
 
 
+class Tree:
+
+    def __init__(self, root_name):
+        self.root_name = root_name
+        self.subtrees = []
+
+    def add(self, *node_names):
+        subtrees = [Tree(node_name) for node_name in node_names]
+        self.subtrees.extend(subtrees)
+        if len(node_names) == 1:
+            return subtrees[0]
+        return subtrees
+
+    def compile(self):
+        if len(self.subtrees) > 0:
+            return self.root_name, [subtree.compile() for subtree in self.subtrees]
+        return self.root_name
+
+
 if __name__ == "__main__":
 
     print_tree(("root", ["child1", ("root2", ["child a", ("R", ["a", ("r", ["b"])])]), "child3"]))
@@ -122,3 +141,14 @@ if __name__ == "__main__":
     print("-" * 50)
 
     print_tree(("+", ["11", ("*", ["2", "1"])]), line_function=lambda x: "\t" * 3 + x)
+
+    print("-" * 50)
+
+    # Using Tree it is much easier to create a tree:
+    hw02 = Tree("hw02")
+    hw02.add("evaluation").add("grader.py", "exercise1_utils.hpp", "exercise2_utils.hpp", "exercise1_tests", "exercise2_tests", "exercise3_tests")
+    hw02.add("exercise1").add("src").add("exercise1.cc")
+    hw02.add("exercise2").add("src").add("exercise2.cc")
+    hw02.add("exercise3").add("src").add("exercise3.cc")
+    dir_structure = hw02.compile()
+    print_tree(dir_structure)
